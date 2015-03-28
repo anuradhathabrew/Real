@@ -5,6 +5,13 @@
  */
 
 package com.ds.project;
+import com.ds.file.HouseFile;
+import com.ds.objects.House;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +26,35 @@ public class ListHouse extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    
+    public ListHouse(java.awt.Frame parent, boolean modal, List<House> houses){
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+        
+        SortedList sl = new SortedList();
+        sl.setHouses(houses);
+        houses = sl.getShortHouses();
+        
+        HouseFile hr = new HouseFile();
+        hr.saveHouseList(houses);
+        
+        DefaultTableModel df;
+        df = (DefaultTableModel) jTable1.getModel();
+        
+        for(House h: houses){
+            Vector v = new Vector();
+            v.add(h.getLotNumber() + "");
+            v.add(h.getFirstName());
+            v.add(h.getLastName() + "");
+            v.add(h.getPrice()+ "");
+            v.add(h.getSquareFeet() + "");
+            v.add(h.getNoOfBedroom() + "");
+            df.addRow(v);
+            
+        }
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,17 +65,53 @@ public class ListHouse extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Lot Number", "First Name", "Last Name", "Price", "Square Feet", "No of Bedrooms"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
         );
 
         pack();
@@ -88,5 +160,7 @@ public class ListHouse extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
