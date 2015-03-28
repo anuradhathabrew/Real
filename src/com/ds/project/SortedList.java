@@ -8,8 +8,6 @@ package com.ds.project;
 
 import com.ds.objects.House;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 /**
  *
