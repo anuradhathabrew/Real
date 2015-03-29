@@ -29,6 +29,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jButton_list" alignment="0" max="32767" attributes="0"/>
                   <Component id="jButton_add" alignment="0" max="32767" attributes="0"/>
                   <Component id="jButton_reset" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabel3" max="32767" attributes="0"/>
@@ -58,6 +59,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="jTextField_price1" min="-2" pref="280" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jButton_find" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -107,11 +109,17 @@
                   <Component id="jButton_reset" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jButton_next" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton_add" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jButton_delete" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButton_list" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jButton_find" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -251,6 +259,22 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_price1">
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton_list">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Short List"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_listActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton_find">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Find"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_findActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

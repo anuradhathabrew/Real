@@ -5,18 +5,42 @@
  */
 
 package com.ds.project;
-
+import com.ds.file.HouseFile;
+import com.ds.objects.House;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Ezio
  */
 public class RealEstate extends javax.swing.JFrame {
-
+    private List<House> houses;
+    private int row = 0;
+    private Boolean checkAdd = true;
     /**
      * Creates new form RealEstate
      */
     public RealEstate() {
         initComponents();
+        setLocationRelativeTo(null);
+
+        HouseFile fm = new HouseFile();
+
+        houses = fm.readFile();
+
+//        fm.saveFile("123\tpp\tpp1\t321\t100\t2");
+//        SortedList sl = new SortedList();
+//        sl.setHouses(houses);
+//
+//        List<House> h = sl.getHouses();
+//
+//        System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::");
+//        for (House th : h) {
+//            System.out.println(th.getLotNumber());
+//        }
+//        System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::");
     }
 
     /**
@@ -47,6 +71,8 @@ public class RealEstate extends javax.swing.JFrame {
         jButton_add = new javax.swing.JButton();
         jButton_delete = new javax.swing.JButton();
         jTextField_price1 = new javax.swing.JTextField();
+        jButton_list = new javax.swing.JButton();
+        jButton_find = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,12 +140,27 @@ public class RealEstate extends javax.swing.JFrame {
             }
         });
 
+        jButton_list.setText("Short List");
+        jButton_list.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_listActionPerformed(evt);
+            }
+        });
+
+        jButton_find.setText("Find");
+        jButton_find.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_findActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton_list, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton_add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton_reset, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -144,7 +185,8 @@ public class RealEstate extends javax.swing.JFrame {
                     .addComponent(jButton_delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jTextField_price1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField_price1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_find, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -182,10 +224,15 @@ public class RealEstate extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_next, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_add, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_list, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_find, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -316,6 +363,67 @@ public class RealEstate extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_deleteActionPerformed
 
+    private void jButton_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listActionPerformed
+
+        ListHouse lh = new ListHouse(this, rootPaneCheckingEnabled, houses);
+        lh.setVisible(true);
+
+        HouseFile hf = new HouseFile();
+
+        houses = hf.readFile();
+
+        SortedList sl = new SortedList();
+        sl.setHouses(houses);
+
+        houses = sl.getShortHouses();
+
+        hf.saveHouseList(houses);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_listActionPerformed
+
+    private void jButton_findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_findActionPerformed
+
+        jTextField_firstName.setText("");
+        jTextField_lastName.setText("");
+        //        jTextField_lotNumber.setText("");
+        jTextField_numBedRooms.setText("");
+        jTextField_price.setText("");
+        jTextField_sqareFeet.setText("");
+
+        jLabel_dis.setText("Next House Displaed : ");
+
+        row = 0;
+
+        checkAdd = true;
+
+        try {
+            Long lotNumber = Long.parseLong(jTextField_lotNumber.getText());
+
+            HouseFile hf = new HouseFile();
+            List<House> houses = hf.readFile();
+            Boolean v = false;
+            //            System.out.println("l "+lotNumber);
+            for (House h : houses) {
+                //                System.out.println("s "+h.getLotNumber());
+                if (h.getLotNumber().equals(lotNumber)) {
+                    jTextField_firstName.setText(h.getFirstName());
+                    jTextField_lastName.setText(h.getLastName());
+                    jTextField_numBedRooms.setText(h.getNoOfBedroom() + "");
+                    jTextField_price.setText(h.getPrice() + "");
+                    jTextField_sqareFeet.setText(h.getSquareFeet() + "");
+                    v = true;
+                }
+            }
+
+            if (!v) {
+                JOptionPane.showMessageDialog(rootPane, "No Result to Show", "Information ", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Lot number Error !", "Error ", JOptionPane.ERROR_MESSAGE);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_findActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -354,6 +462,8 @@ public class RealEstate extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_add;
     private javax.swing.JButton jButton_delete;
+    private javax.swing.JButton jButton_find;
+    private javax.swing.JButton jButton_list;
     private javax.swing.JButton jButton_next;
     private javax.swing.JButton jButton_reset;
     private javax.swing.JLabel jLabel2;
