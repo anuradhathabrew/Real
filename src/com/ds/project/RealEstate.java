@@ -302,18 +302,7 @@ public class RealEstate extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(rootPane, "Successfully Added", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-                jTextField_firstName.setText("");
-                jTextField_lastName.setText("");
-                jTextField_lotNumber.setText("");
-                jTextField_numBedRooms.setText("");
-                jTextField_price.setText("");
-                jTextField_sqareFeet.setText("");
-
-                jLabel_dis.setText("Next House Displaed : ");
-
-                row = 0;
-
-                checkAdd = true;
+                clear();
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "You need to rest befor add or Check Lot Number !", "Error", JOptionPane.WARNING_MESSAGE);
@@ -451,6 +440,22 @@ public class RealEstate extends javax.swing.JFrame {
                 new RealEstate().setVisible(true);
             }
         });
+    }
+    
+    private void clear(){
+        
+                jTextField_firstName.setText("");
+                jTextField_lastName.setText("");
+                jTextField_lotNumber.setText("");
+                jTextField_numBedRooms.setText("");
+                jTextField_price.setText("");
+                jTextField_sqareFeet.setText("");
+
+                jLabel_dis.setText("Next House Displaed : ");
+
+                row = 0;
+
+                checkAdd = true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
