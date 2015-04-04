@@ -13,7 +13,7 @@ import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import org.jvnet.substance.skin.SubstanceNebulaBrickWallLookAndFeel;
+//import org.jvnet.substance.skin.SubstanceNebulaBrickWallLookAndFeel;
 /**
  *
  * @author Ezio
@@ -417,11 +417,11 @@ public class RealEstate extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RealEstate().setVisible(true);
-                try {
+                /*try {
                     UIManager.setLookAndFeel(new SubstanceNebulaBrickWallLookAndFeel());
 //                    UIManager.setLookAndFeel(new SynthLookAndFeel());
                 } catch (UnsupportedLookAndFeelException e) {
-                }
+                }*/
             }
         });
     }
